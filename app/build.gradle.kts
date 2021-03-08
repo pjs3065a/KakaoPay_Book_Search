@@ -110,6 +110,10 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging:21.0.1")
     annotationProcessor("com.github.bumptech.glide:compiler:${Versions.glide}")
 
+    // log
+    implementation("com.orhanobut:logger:${Versions.logger}")
+    implementation("com.jakewharton.timber:timber:${Versions.timber}")
+
     //test
     testImplementation("androidx.test.ext:junit:${Versions.androidJunit}")
     testImplementation("androidx.test.espresso:espresso-core:${Versions.espresso}")
