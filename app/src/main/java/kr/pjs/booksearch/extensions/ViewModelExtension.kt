@@ -10,7 +10,6 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import kr.pjs.booksearch.data.remote.api.SearchDataSourceImpl
-import kr.pjs.booksearch.data.remote.repository.SearchRepository
 import kr.pjs.booksearch.data.remote.repository.SearchRepositoryImpl
 import kr.pjs.booksearch.utils.resolveClass
 import kr.pjs.booksearch.view.ui.searchInput.SearchInputViewModel
@@ -46,7 +45,7 @@ class ViewModelFactory constructor(
         handle: SavedStateHandle
     ) = with(modelClass) {
         when (this) {
-            resolveClass<SearchResultViewModel>() -> {
+            resolveClass<SearchInputViewModel>() -> {
                 SearchInputViewModel(SearchRepositoryImpl(SearchDataSourceImpl()))
             }
 
