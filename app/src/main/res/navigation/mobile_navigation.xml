@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/searchInput">
+
+    <fragment
+        android:id="@+id/searchInput"
+        android:name="kr.pjs.booksearch.view.ui.searchInput.SearchInputFragment"
+        android:label="searchInput"
+        tools:layout="@layout/fragment_search_input" />
+
+    <fragment
+        android:id="@+id/searchResult"
+        android:name="kr.pjs.booksearch.view.ui.searchResult.SearchResultFragment"
+        android:label="searchResult"
+        tools:layout="@layout/fragment_search_result" />
+</navigation>
