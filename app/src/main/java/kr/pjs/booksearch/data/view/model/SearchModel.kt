@@ -13,7 +13,9 @@ data class SearchModel(
 data class MetaModel(
     val isEnd: Boolean,
     val pageableCount: Int,
-    val totalCount: Int
+    val totalCount: Int,
+    var query: String = "",
+    var currentPage :Int = 1
 )
 
 data class DocumentModel(
