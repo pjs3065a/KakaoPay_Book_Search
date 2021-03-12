@@ -29,4 +29,5 @@ data class DocumentModel(
     val salePrice: Int,
     val thumbnail: String,
     val status: String,
+    var isFavorite: Boolean = false
 )
