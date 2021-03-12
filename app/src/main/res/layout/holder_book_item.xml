@@ -4,19 +4,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="150dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/shape_rect_corner_8">
 
         <ImageView
             android:id="@+id/ib_favorite"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="2dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
             android:scaleType="fitCenter"
             android:src="@drawable/selector_favorite"
-            app:layout_constraintBottom_toTopOf="@id/tv_title_datetime"
+            app:layout_constraintBottom_toTopOf="@id/tv_title_name"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_book_price"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -37,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:text="@string/book_name"
+            android:textAppearance="@style/titleStyle"
             app:layout_constraintEnd_toStartOf="@id/tv_book_name"
             app:layout_constraintStart_toEndOf="@id/iv_book"
             app:layout_constraintTop_toTopOf="@id/iv_book" />
@@ -46,7 +50,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            app:layout_constraintEnd_toStartOf="@id/tv_title_datetime"
+            android:layout_marginEnd="@dimen/base_end"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_title_name"
             app:layout_constraintTop_toTopOf="@id/tv_title_name" />
 
@@ -54,11 +60,12 @@
             android:id="@+id/tv_title_datetime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginTop="8dp"
             android:text="@string/datetime"
+            android:textAppearance="@style/titleStyle"
             app:layout_constraintEnd_toStartOf="@id/tv_book_datetime"
-            app:layout_constraintStart_toEndOf="@id/tv_book_name"
-            app:layout_constraintTop_toTopOf="@id/tv_title_name" />
+            app:layout_constraintStart_toStartOf="@id/tv_title_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_name" />
 
         <TextView
             android:id="@+id/tv_book_datetime"
@@ -68,27 +75,40 @@
             android:layout_marginEnd="@dimen/base_end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_title_datetime"
-            app:layout_constraintTop_toTopOf="@id/tv_title_name" />
+            app:layout_constraintTop_toTopOf="@id/tv_title_datetime" />
+
+        <TextView
+            android:id="@+id/tv_title_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/base_end"
+            android:text="@string/description"
+            android:textAppearance="@style/titleStyle"
+            app:layout_constraintStart_toEndOf="@id/iv_book"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_datetime" />
 
         <TextView
             android:id="@+id/tv_book_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="@dimen/base_end"
             android:singleLine="true"
+            app:layout_constraintBottom_toTopOf="@id/tv_title_price"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_book"
-            app:layout_constraintTop_toBottomOf="@id/tv_title_name" />
+            app:layout_constraintStart_toEndOf="@id/tv_title_description"
+            app:layout_constraintTop_toTopOf="@id/tv_title_description"
+            app:layout_constraintVertical_bias="0" />
 
         <TextView
             android:id="@+id/tv_title_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:singleLine="true"
             android:text="@string/price"
+            android:textAppearance="@style/titleStyle"
             app:layout_constraintBottom_toBottomOf="@id/iv_book"
             app:layout_constraintStart_toEndOf="@id/iv_book" />
 

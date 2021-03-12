@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">BookSearch</string>
-    <string name="book_name">책이름</string>
-    <string name="datetime">출시일</string>
-    <string name="price">책 가격</string>
+
+    <!-- [검색 입력] -->
+    <string name="book_name">책 이름 | </string>
+    <string name="datetime">출시일 | </string>
+    <string name="price">책 가격 | </string>
+    <string name="hint_input_book_name">책 이름을 입력하세요</string>
+    <string name="description">설명 | </string>
 </resources>
