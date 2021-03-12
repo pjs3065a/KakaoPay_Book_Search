@@ -25,6 +25,7 @@ class CustomSearchView : AppCompatEditText, TextWatcher, View.OnTouchListener,
 
     private lateinit var clearDrawable: Drawable
     private lateinit var searchDrawable: Drawable
+    var onTextChangeListener: ((String) -> Unit)? = null
 
     constructor(context: Context) : super(context) {
         setupView()
@@ -53,7 +54,7 @@ class CustomSearchView : AppCompatEditText, TextWatcher, View.OnTouchListener,
         clearDrawable =
             ContextCompat.getDrawable(context, R.drawable.ic_clear)!!.apply {
                 bounds = Rect(0, 0, 16.dpToPx(), 16.dpToPx())
-            setTint(ContextCompat.getColor(context, R.color.black))
+                setTint(ContextCompat.getColor(context, R.color.black))
             }
 
         searchDrawable = ContextCompat.getDrawable(context, R.drawable.ic_search)!!.apply {
@@ -71,7 +72,7 @@ class CustomSearchView : AppCompatEditText, TextWatcher, View.OnTouchListener,
      * 이벤트 초기화하기
      */
     @SuppressLint("ClickableViewAccessibility")
-    private fun setupEvent(){
+    private fun setupEvent() {
         super.setOnTouchListener(this)
         super.setOnFocusChangeListener(this)
         super.setOnKeyListener(this)
@@ -139,7 +140,8 @@ class CustomSearchView : AppCompatEditText, TextWatcher, View.OnTouchListener,
         lengthBefore: Int,
         lengthAfter: Int
     ) {
-        setClearIconVisible(text != null && text.isNotEmpty())
+        onTextChangeListener?.invoke(text.toString())
+        setClearIconVisible(text.isNullOrEmpty().not())
     }
 
     override fun afterTextChanged(s: Editable?) {}
