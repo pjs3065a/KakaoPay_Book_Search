@@ -53,17 +53,17 @@ class CustomSearchView : AppCompatEditText, TextWatcher, View.OnTouchListener,
     private fun setupView() {
         clearDrawable =
             ContextCompat.getDrawable(context, R.drawable.ic_clear)!!.apply {
-                bounds = Rect(0, 0, 16.dpToPx(), 16.dpToPx())
-                setTint(ContextCompat.getColor(context, R.color.black))
+                bounds = Rect(0, 0, 12.dpToPx(), 12.dpToPx())
+                setTint(ContextCompat.getColor(context, R.color.Gray_700))
             }
 
         searchDrawable = ContextCompat.getDrawable(context, R.drawable.ic_search)!!.apply {
-            bounds = Rect(0, 0, 16.dpToPx(), 16.dpToPx())
-            setTint(ContextCompat.getColor(context, R.color.black))
+            bounds = Rect(0, 0, 12.dpToPx(), 12.dpToPx())
+            setTint(ContextCompat.getColor(context, R.color.Gray_700))
         }
 
-        compoundDrawablePadding = 8.dpToPx()
-        setPadding(8.dpToPx(), 0, 8.dpToPx(), 0)
+        compoundDrawablePadding = 10.dpToPx()
+        setPadding(10.dpToPx(), 0, 10.dpToPx(), 0)
         setClearIconVisible(false)
     }
 
@@ -108,7 +108,7 @@ class CustomSearchView : AppCompatEditText, TextWatcher, View.OnTouchListener,
      * 삭제 버튼 범위인지 가져오기
      */
     private fun isTouchClearDrawableRange(xPoint: Float) =
-        clearDrawable.isVisible && xPoint > width - paddingRight - clearDrawable.intrinsicWidth
+        clearDrawable.isVisible && xPoint > width - paddingRight - clearDrawable.bounds.width()
 
 
     /**
