@@ -12,9 +12,9 @@ data class SearchResponse(
 )
 
 data class MetaResponse(
-    @SerializedName("is_end") val is_end: Boolean,
-    @SerializedName("pageable_count") val pageable_count: Int,
-    @SerializedName("total_count") val total_count: Int
+    @SerializedName("is_end") val isEnd: Boolean,
+    @SerializedName("pageable_count") val pageableCount: Int,
+    @SerializedName("total_count") val totalCount: Int
 )
 
 data class DocumentResponse(
@@ -27,7 +27,7 @@ data class DocumentResponse(
     @SerializedName("publisher") val publisher: String,
     @SerializedName("translators") val translators: MutableList<String>,
     @SerializedName("price") val price: Int,
-    @SerializedName("sale_price") val sale_price: Int,
+    @SerializedName("sale_price") val salePrice: Int,
     @SerializedName("thumbnail") val thumbnail: String,
     @SerializedName("status") val status: String,
 )
