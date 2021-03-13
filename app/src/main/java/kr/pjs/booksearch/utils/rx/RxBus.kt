@@ -4,6 +4,10 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.PublishSubject
 import kr.pjs.booksearch.data.view.model.DocumentModel
 
+/**
+ * RxBus 클래스
+ * Subject를 이용해서 데이터를 전달할 때 사용
+ */
 object RxBus {
 
     private val publisher = PublishSubject.create<Any>()

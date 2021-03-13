@@ -32,6 +32,10 @@ fun ComponentActivity.getViewModelFactory(): ViewModelFactory {
     )
 }
 
+/**
+ * 뷰모델 팩토리 클래스
+ * 뷰모델을 생성하고 필요 파라미터를 주입 (DI)
+ */
 @Suppress("UNCHECKED_CAST", "CanBeParameter")
 class ViewModelFactory constructor(
     private val owner: SavedStateRegistryOwner,
