@@ -1,12 +1,17 @@
 package kr.pjs.booksearch.view.ui.searchdetail
 
 import androidx.databinding.ObservableField
+import kr.pjs.booksearch.data.NONE
 import kr.pjs.booksearch.data.args.DocumentArgs
 import kr.pjs.booksearch.data.view.model.DocumentModel
 import kr.pjs.booksearch.extensions.toDateFormat
+import kr.pjs.booksearch.extensions.toPriceFormat
 import kr.pjs.booksearch.view.base.DisposableViewModel
 
-class SearchDetailViewModel(private var args: DocumentArgs?) : DisposableViewModel() {
+/**
+ * 검색 상세 뷰모델 클래스
+ */
+class SearchDetailViewModel(args: DocumentArgs?) : DisposableViewModel() {
 
     private var itemModel: DocumentModel? = null
 
@@ -64,19 +69,37 @@ class SearchDetailViewModel(private var args: DocumentArgs?) : DisposableViewMod
             bindName.set(data.title)
             bindThumbnail.set(data.thumbnail)
             bindDateTime.set(data.datetime?.toDateFormat())
-            bindPrice.set(data.price.toString())
+            bindPrice.set(
+                "${data.price.toString().toPriceFormat()} (${
+                    data.salePrice.toString().toPriceFormat()
+                })"
+            )
             bindNumber.set(data.isbn)
-            bindAuthor.set(data.authors.toString())
+            bindAuthor.set(convertListString(data.authors))
             bindPublisher.set(data.publisher)
-            bindTranslator.set(data.translators.toString())
-            bindStatus.set(data.status)
-            bindContent.set(data.contents)
+            bindTranslator.set(convertListString(data.translators))
+            bindStatus.set(convertEmptyString(data.status))
+            bindContent.set(convertEmptyString(data.contents))
             bindIsFavorite.set(data.isFavorite)
-        } ?: run {
-            //TODO 넘어온 값이 없을 경우 처리
         }
     }
 
+    /**
+     * 문자열 타입의 리스트를 나열식 문자열 처리
+     */
+    private fun convertListString(list: MutableList<String>?): String {
+        val replacedString = list.toString().replace("]", "").replace("[", "")
+        return convertEmptyString(replacedString)
+    }
+
+    /**
+     * 데이터가 없을 경우 해당 문자열 처리
+     */
+    private fun convertEmptyString(str: String): String = if (str.isEmpty()) NONE else str
+
+    /**
+     * 좋아요 버튼 클릭 이벤트 처리
+     */
     fun onClickFavorite() {
         itemModel?.let { data ->
             data.isFavorite = data.isFavorite.not()

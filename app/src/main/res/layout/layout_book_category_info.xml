@@ -20,13 +20,13 @@
         <!-- 카테고리 타이틀 -->
         <TextView
             android:id="@+id/tv_title"
-            style="@style/titleStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:minWidth="45dp"
             android:text="@{title}"
+            android:textAppearance="@style/titleStyle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
