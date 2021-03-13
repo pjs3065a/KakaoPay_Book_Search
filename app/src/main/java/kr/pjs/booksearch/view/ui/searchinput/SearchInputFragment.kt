@@ -1,5 +1,6 @@
 package kr.pjs.booksearch.view.ui.searchinput
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.pjs.booksearch.R
 import kr.pjs.booksearch.databinding.FragmentSearchInputBinding
 import kr.pjs.booksearch.extensions.getViewModelFactory
+import kr.pjs.booksearch.extensions.hideKeyboard
 import kr.pjs.booksearch.view.base.DataBindingFragment
 import kr.pjs.booksearch.view.ui.searchinput.adapter.SearchInputAdapter
 
@@ -45,15 +47,23 @@ class SearchInputFragment :
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupEvent() {
-        mBinding.rvSearchInput.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val lastVisibleItem =
-                    (mBinding.rvSearchInput.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
-                viewModel.reqMoreSearchResult(lastVisibleItem)
+        mBinding.rvSearchInput.apply {
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    val lastVisibleItem =
+                        (mBinding.rvSearchInput.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
+                    viewModel.reqMoreSearchResult(lastVisibleItem)
+                }
+            })
+
+            setOnTouchListener { _, _ ->
+                mBinding.cvSearch.hideKeyboard()
+                false
             }
-        })
+        }
     }
 
     private fun setupRecyclerView() {
