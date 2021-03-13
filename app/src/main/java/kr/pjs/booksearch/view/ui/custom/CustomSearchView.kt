@@ -63,8 +63,9 @@ class CustomSearchView : AppCompatEditText, TextWatcher, View.OnTouchListener,
         }
 
         compoundDrawablePadding = 10.dpToPx()
-        setPadding(10.dpToPx(), 0, 10.dpToPx(), 0)
+        setPadding(15.dpToPx(), 0, 15.dpToPx(), 0)
         setClearIconVisible(false)
+        requestFocus()
     }
 
 
@@ -146,7 +147,9 @@ class CustomSearchView : AppCompatEditText, TextWatcher, View.OnTouchListener,
         setClearIconVisible(text.isNullOrEmpty().not())
     }
 
-    override fun afterTextChanged(s: Editable?) {}
+    override fun afterTextChanged(s: Editable?) {
+
+    }
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
 
