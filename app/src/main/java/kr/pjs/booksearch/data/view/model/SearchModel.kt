@@ -3,7 +3,6 @@ package kr.pjs.booksearch.data.view.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import kr.pjs.booksearch.view.ui.searchinput.adapter.SearchItemType
-import java.util.*
 
 /**
  * 검색 관련 모델 클래스
@@ -30,7 +29,7 @@ data class DocumentModel(
     val contents: String = "",
     val url: String = "",
     val isbn: String = "",
-    val datetime: Date? = null,
+    val datetime: String = "",
     val authors: MutableList<String>? = null,
     val publisher: String = "",
     val translators: MutableList<String>? = null,

@@ -68,7 +68,7 @@ class SearchDetailViewModel(args: DocumentArgs?) : DisposableViewModel() {
         itemModel?.let { data ->
             bindName.set(data.title)
             bindThumbnail.set(data.thumbnail)
-            bindDateTime.set(data.datetime?.toDateFormat())
+            bindDateTime.set(convertEmptyString(data.datetime.toDateFormat()))
             bindPrice.set(
                 "${data.price.toString().toPriceFormat()} (${
                     data.salePrice.toString().toPriceFormat()
@@ -76,7 +76,7 @@ class SearchDetailViewModel(args: DocumentArgs?) : DisposableViewModel() {
             )
             bindNumber.set(data.isbn)
             bindAuthor.set(convertListString(data.authors))
-            bindPublisher.set(data.publisher)
+            bindPublisher.set(convertEmptyString(data.publisher))
             bindTranslator.set(convertListString(data.translators))
             bindStatus.set(convertEmptyString(data.status))
             bindContent.set(convertEmptyString(data.contents))

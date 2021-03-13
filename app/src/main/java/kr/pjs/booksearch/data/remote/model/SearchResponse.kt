@@ -22,7 +22,7 @@ data class DocumentResponse(
     @SerializedName("contents") val contents: String,
     @SerializedName("url") val url: String,
     @SerializedName("isbn") val isbn: String,
-    @SerializedName("datetime") val datetime: Date,
+    @SerializedName("datetime") val datetime: String,
     @SerializedName("authors") val authors: MutableList<String>,
     @SerializedName("publisher") val publisher: String,
     @SerializedName("translators") val translators: MutableList<String>,
