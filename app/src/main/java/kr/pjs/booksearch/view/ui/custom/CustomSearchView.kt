@@ -53,12 +53,12 @@ class CustomSearchView : AppCompatEditText, TextWatcher, View.OnTouchListener,
     private fun setupView() {
         clearDrawable =
             ContextCompat.getDrawable(context, R.drawable.ic_clear)!!.apply {
-                bounds = Rect(0, 0, 12.dpToPx(), 12.dpToPx())
-                setTint(ContextCompat.getColor(context, R.color.Gray_700))
+                bounds = Rect(0, 0, 16.dpToPx(), 16.dpToPx())
+                setTint(ContextCompat.getColor(context, R.color.Gray_500))
             }
 
         searchDrawable = ContextCompat.getDrawable(context, R.drawable.ic_search)!!.apply {
-            bounds = Rect(0, 0, 12.dpToPx(), 12.dpToPx())
+            bounds = Rect(0, 0, 16.dpToPx(), 16.dpToPx())
             setTint(ContextCompat.getColor(context, R.color.Gray_700))
         }
 
@@ -127,6 +127,8 @@ class CustomSearchView : AppCompatEditText, TextWatcher, View.OnTouchListener,
     override fun onFocusChange(v: View?, hasFocus: Boolean) {
         if (!hasFocus) {
             hideKeyboard()
+        }else{
+            showKeyboard()
         }
     }
 
@@ -154,7 +156,7 @@ class CustomSearchView : AppCompatEditText, TextWatcher, View.OnTouchListener,
     override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
         when (keyCode) {
             KeyEvent.KEYCODE_ENTER -> {
-
+                hideKeyboard()
                 return true
             }
         }

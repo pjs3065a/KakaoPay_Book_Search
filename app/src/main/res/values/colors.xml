@@ -33,4 +33,16 @@
     <color name="Red_700">#D32F2F</color>
     <color name="Red_800">#C62828</color>
     <color name="Red_900">#B71C1C</color>
+
+    <!-- Yellow -->
+    <color name="Yellow_50">#FFFDE7</color>
+    <color name="Yellow_100">#FFF9C4</color>
+    <color name="Yellow_200">#FFF59D</color>
+    <color name="Yellow_300">#FFF176</color>
+    <color name="Yellow_400">#FFEE58</color>
+    <color name="Yellow_500">#FFEB3B</color>
+    <color name="Yellow_600">#FDD835</color>
+    <color name="Yellow_700">#FBC02D</color>
+    <color name="Yellow_800">#F9A825</color>
+    <color name="Yellow_900">#F57F17</color>
 </resources>
