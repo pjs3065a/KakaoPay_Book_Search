@@ -3,6 +3,7 @@ package kr.pjs.booksearch.view.ui.searchinput
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,6 +56,7 @@ class SearchInputFragment :
                     super.onScrolled(recyclerView, dx, dy)
                     val lastVisibleItem =
                         (mBinding.rvSearchInput.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
+                    mBinding.fbUp.isVisible = lastVisibleItem >= 7
                     viewModel.reqMoreSearchResult(lastVisibleItem)
                 }
             })
@@ -63,6 +65,10 @@ class SearchInputFragment :
                 mBinding.cvSearch.hideKeyboard()
                 false
             }
+        }
+
+        mBinding.fbUp.setOnClickListener {
+            mBinding.rvSearchInput.smoothScrollToPosition(0)
         }
     }
 
