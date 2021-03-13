@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="kr.pjs.booksearch.view.ui.searchInput.SearchInputViewModel" />
+            type="kr.pjs.booksearch.view.ui.searchinput.SearchInputViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

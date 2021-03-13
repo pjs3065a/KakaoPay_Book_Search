@@ -9,11 +9,12 @@ import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
+import kr.pjs.booksearch.data.ARGS
 import kr.pjs.booksearch.data.remote.api.SearchDataSourceImpl
 import kr.pjs.booksearch.data.remote.repository.SearchRepositoryImpl
 import kr.pjs.booksearch.utils.resolveClass
-import kr.pjs.booksearch.view.ui.searchInput.SearchInputViewModel
-import kr.pjs.booksearch.view.ui.searchResult.SearchResultViewModel
+import kr.pjs.booksearch.view.ui.searchdetail.SearchDetailViewModel
+import kr.pjs.booksearch.view.ui.searchinput.SearchInputViewModel
 
 fun Fragment.getViewModelFactory(): ViewModelFactory {
     return ViewModelFactory(
@@ -49,8 +50,8 @@ class ViewModelFactory constructor(
                 SearchInputViewModel(SearchRepositoryImpl(SearchDataSourceImpl()))
             }
 
-            resolveClass<SearchResultViewModel>() -> {
-                SearchResultViewModel()
+            resolveClass<SearchDetailViewModel>() -> {
+                SearchDetailViewModel(defaultArgs?.getParcelable(ARGS))
             }
 
             else -> newInstance()

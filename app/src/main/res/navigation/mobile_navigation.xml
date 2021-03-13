@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/searchInput"
-        android:name="kr.pjs.booksearch.view.ui.searchInput.SearchInputFragment"
+        android:name="kr.pjs.booksearch.view.ui.searchinput.SearchInputFragment"
         android:label="searchInput"
         tools:layout="@layout/fragment_search_input" />
 
     <fragment
-        android:id="@+id/searchResult"
-        android:name="kr.pjs.booksearch.view.ui.searchResult.SearchResultFragment"
-        android:label="searchResult"
-        tools:layout="@layout/fragment_search_result" />
+        android:id="@+id/searchDetail"
+        android:name="kr.pjs.booksearch.view.ui.searchdetail.SearchDetailFragment"
+        android:label="searchDetail"
+        tools:layout="@layout/fragment_search_detail" />
 </navigation>
