@@ -1,12 +1,19 @@
-package kr.pjs.booksearch.view.ui.searchInput
+package kr.pjs.booksearch.view.ui.searchinput
 
+import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import io.reactivex.rxjava3.kotlin.addTo
+import kr.pjs.booksearch.data.ARGS
+import kr.pjs.booksearch.data.args.DocumentArgs
 import kr.pjs.booksearch.data.remote.repository.SearchRepository
 import kr.pjs.booksearch.data.toSearchModel
 import kr.pjs.booksearch.data.view.model.DocumentModel
 import kr.pjs.booksearch.data.view.model.MetaModel
 import kr.pjs.booksearch.data.view.model.SearchModel
+import kr.pjs.booksearch.utils.rx.RxBus
+import kr.pjs.booksearch.utils.rx.RxBusEvent
 import kr.pjs.booksearch.utils.rx.SchedulerProvider
 import kr.pjs.booksearch.view.base.DisposableViewModel
 
@@ -21,12 +28,16 @@ class SearchInputViewModel(private val searchRepository: SearchRepository) : Dis
     val bookInfoData: LiveData<MutableList<DocumentModel>>
         get() = _bookInfoData
 
+    var navigateSearchDetail: ((Bundle) -> Unit)? = null
+
     init {
         observer()
     }
 
     private fun observer() {
-
+        RxBus.listen(RxBusEvent.BookInfoItemClick::class.java).subscribe { data ->
+            navigateSearchDetail?.invoke(bundleOf(ARGS to DocumentArgs(data.item)))
+        }.addTo(compositeDisposable)
     }
 
     /**
@@ -44,11 +55,13 @@ class SearchInputViewModel(private val searchRepository: SearchRepository) : Dis
         fun error(t: Throwable) {
             t.printStackTrace()
         }
-        searchRepository.getSearchResult(query = query, size = documentSize)
-            .map { data -> data.toSearchModel() }
-            .subscribeOn(SchedulerProvider.io())
-            .observeOn(SchedulerProvider.ui())
-            .subscribe(::success, ::error)
+
+        if (!isSameQuery(query))
+            searchRepository.getSearchResult(query = query, size = documentSize)
+                .map { data -> data.toSearchModel() }
+                .subscribeOn(SchedulerProvider.io())
+                .observeOn(SchedulerProvider.ui())
+                .subscribe(::success, ::error)
     }
 
     /**
@@ -77,6 +90,7 @@ class SearchInputViewModel(private val searchRepository: SearchRepository) : Dis
 
         fun error(t: Throwable) {
             t.printStackTrace()
+
             isLoading = false
         }
 
@@ -98,4 +112,10 @@ class SearchInputViewModel(private val searchRepository: SearchRepository) : Dis
      */
     private fun isMorePosition(position: Int) =
         metaData.isEnd.not() && position.plus(1) >= (metaData.currentPage * documentSize) - (documentSize / 2) && isLoading.not()
+
+    /**
+     * 같은 쿼리 요청인지 체크하기
+     */
+    private fun isSameQuery(query: String) = ::metaData.isInitialized && query == metaData.query
+
 }

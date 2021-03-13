@@ -1,15 +1,16 @@
-package kr.pjs.booksearch.view.ui.searchInput
+package kr.pjs.booksearch.view.ui.searchinput
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.pjs.booksearch.R
 import kr.pjs.booksearch.databinding.FragmentSearchInputBinding
 import kr.pjs.booksearch.extensions.getViewModelFactory
 import kr.pjs.booksearch.view.base.DataBindingFragment
-import kr.pjs.booksearch.view.ui.searchInput.adapter.SearchInputAdapter
+import kr.pjs.booksearch.view.ui.searchinput.adapter.SearchInputAdapter
 
 /**
  * 검색 입력 프래그먼트 클래스
@@ -37,6 +38,10 @@ class SearchInputFragment :
 
         viewModel.bookInfoData.observe(viewLifecycleOwner) { data ->
             mAdapter.submitList(data)
+        }
+
+        viewModel.navigateSearchDetail = { data ->
+            findNavController().navigate(R.id.searchDetail, data)
         }
     }
 

@@ -1,10 +1,10 @@
-package kr.pjs.booksearch.view.ui.searchInput.adapter
+package kr.pjs.booksearch.view.ui.searchinput.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import kr.pjs.booksearch.data.view.model.DocumentModel
-import kr.pjs.booksearch.view.ui.searchInput.adapter.holder.BookInfoHolder
+import kr.pjs.booksearch.view.ui.searchinput.adapter.holder.BookInfoHolder
 
 /**
  * 검색 입력 결과에 대한 어댑터 클래스
