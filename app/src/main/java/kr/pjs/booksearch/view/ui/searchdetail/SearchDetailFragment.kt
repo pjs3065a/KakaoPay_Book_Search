@@ -1,5 +1,7 @@
 package kr.pjs.booksearch.view.ui.searchdetail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -18,12 +20,19 @@ class SearchDetailFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupObserver()
         setupEvent()
     }
 
     private fun setupEvent() {
         mBinding.ibBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+    }
+
+    private fun setupObserver() {
+        viewModel.onNavigateUrl = { url ->
+            requireActivity().startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
         }
     }
 }

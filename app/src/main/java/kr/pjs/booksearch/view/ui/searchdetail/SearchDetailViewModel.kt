@@ -14,6 +14,7 @@ import kr.pjs.booksearch.view.base.DisposableViewModel
 class SearchDetailViewModel(args: DocumentArgs?) : DisposableViewModel() {
 
     private var itemModel: DocumentModel? = null
+    var onNavigateUrl: ((String) -> Unit)? = null
 
     val bindName by lazy {
         ObservableField<String>()
@@ -104,6 +105,12 @@ class SearchDetailViewModel(args: DocumentArgs?) : DisposableViewModel() {
         itemModel?.let { data ->
             data.isFavorite = data.isFavorite.not()
             bindIsFavorite.set(data.isFavorite)
+        }
+    }
+
+    fun onClickImage() {
+        itemModel?.let { data ->
+            onNavigateUrl?.invoke(data.url)
         }
     }
 }
