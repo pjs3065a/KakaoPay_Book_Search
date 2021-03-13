@@ -16,6 +16,7 @@ import kr.pjs.booksearch.utils.rx.RxBus
 import kr.pjs.booksearch.utils.rx.RxBusEvent
 import kr.pjs.booksearch.utils.rx.SchedulerProvider
 import kr.pjs.booksearch.view.base.DisposableViewModel
+import kr.pjs.booksearch.view.ui.searchinput.adapter.SearchItemType
 
 class SearchInputViewModel(private val searchRepository: SearchRepository) : DisposableViewModel() {
 
@@ -49,10 +50,19 @@ class SearchInputViewModel(private val searchRepository: SearchRepository) : Dis
                 this.query = query
             }
 
-            _bookInfoData.value = item.documents
+            if (item.documents.isEmpty()) {
+                _bookInfoData.value = mutableListOf(DocumentModel(viewType = SearchItemType.NONE))
+            } else {
+                _bookInfoData.value = item.documents
+            }
         }
 
         fun error(t: Throwable) {
+            val clearedData = _bookInfoData.value?.toMutableList()?.also{ data ->
+                data.clear()
+            }
+            _bookInfoData.value = clearedData
+
             t.printStackTrace()
         }
 
@@ -75,22 +85,20 @@ class SearchInputViewModel(private val searchRepository: SearchRepository) : Dis
         isLoading = true
 
         fun success(item: SearchModel) {
-
             metaData = item.meta.apply {
                 query = metaData.query
                 currentPage = metaData.currentPage.plus(1)
             }
 
-
             val initialData = _bookInfoData.value?.map { it.copy() }?.toMutableList()
             initialData?.addAll(item.documents)
             _bookInfoData.value = initialData
+
             isLoading = false
         }
 
         fun error(t: Throwable) {
             t.printStackTrace()
-
             isLoading = false
         }
 

@@ -26,7 +26,7 @@ class BookInfoHolder private constructor(private val mBinding: HolderBookItemBin
 
     fun onBindViewHolder(item: DocumentModel) {
         mBinding.tvBookName.text = item.title
-        mBinding.tvBookDatetime.text = item.datetime.toDateFormat()
+        mBinding.tvBookDatetime.text = item.datetime?.toDateFormat()
         mBinding.tvBookDescription.text = item.contents
         mBinding.tvBookPrice.text = item.price.toString()
         mBinding.ibFavorite.isSelected = item.isFavorite

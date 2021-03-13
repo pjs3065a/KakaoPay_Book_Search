@@ -63,7 +63,7 @@ class SearchDetailViewModel(private var args: DocumentArgs?) : DisposableViewMod
         itemModel?.let { data ->
             bindName.set(data.title)
             bindThumbnail.set(data.thumbnail)
-            bindDateTime.set(data.datetime.toDateFormat())
+            bindDateTime.set(data.datetime?.toDateFormat())
             bindPrice.set(data.price.toString())
             bindNumber.set(data.isbn)
             bindAuthor.set(data.authors.toString())
