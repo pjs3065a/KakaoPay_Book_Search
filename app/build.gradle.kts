@@ -113,7 +113,6 @@ dependencies {
 
     //glide
     implementation("com.github.bumptech.glide:glide:${Versions.glide}")
-    implementation("com.google.firebase:firebase-messaging:21.0.1")
     annotationProcessor("com.github.bumptech.glide:compiler:${Versions.glide}")
 
     // log
