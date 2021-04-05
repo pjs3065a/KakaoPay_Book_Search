@@ -58,7 +58,9 @@ class SearchInputViewModel(private val searchRepository: SearchRepository) : Dis
         }
 
         fun error(t: Throwable) {
-            val clearedData = _bookInfoData.value?.toMutableList()?.also{ data ->
+            metaData.query = query
+
+            val clearedData = _bookInfoData.value?.toMutableList()?.also { data ->
                 data.clear()
             }
             _bookInfoData.value = clearedData
@@ -66,12 +68,13 @@ class SearchInputViewModel(private val searchRepository: SearchRepository) : Dis
             t.printStackTrace()
         }
 
-        if (!isSameQuery(query))
+        if (isSameQuery(query).not())
             searchRepository.getSearchResult(query = query, size = documentSize)
                 .map { data -> data.toSearchModel() }
                 .subscribeOn(SchedulerProvider.io())
                 .observeOn(SchedulerProvider.ui())
                 .subscribe(::success, ::error)
+                .addTo(compositeDisposable)
     }
 
     /**
@@ -112,6 +115,7 @@ class SearchInputViewModel(private val searchRepository: SearchRepository) : Dis
                 .subscribeOn(SchedulerProvider.io())
                 .observeOn(SchedulerProvider.ui())
                 .subscribe(::success, ::error)
+                .addTo(compositeDisposable)
         }
     }
 
